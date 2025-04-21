@@ -1,0 +1,18 @@
+char data = 0;
+
+void setup() {
+  Serial.begin(9600);     // Start serial communication
+  pinMode(8, OUTPUT);     // Set relay control pin
+  digitalWrite(8, LOW);   // Ensure the relay is off
+}
+
+void loop() {
+  if (Serial.available()) {
+    data = Serial.read();  // Read data from Bluetooth
+    if (data == '1') {
+      digitalWrite(8, HIGH);  // Turn ON relay
+    } else if (data == '0') {
+      digitalWrite(8, LOW);   // Turn OFF relay
+    }
+  }
+}
